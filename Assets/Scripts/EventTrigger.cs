@@ -38,7 +38,7 @@ public class EventTrigger : MonoBehaviour
             audioSource.PlayOneShot(deathSE);
 
         }
-        if (enemy1.hp1 <= gameManager.count)
+        if (Enemy1.hp1 <= gameManager.count)
         {
             rightclick.SetActive(false);
             leftclick.SetActive(true);
@@ -49,7 +49,7 @@ public class EventTrigger : MonoBehaviour
     public void Event()
     {
         //敵を倒せる状態で敵を左クリック
-        if (enemy1.hp1 <= gameManager.count)
+        if (Enemy1.hp1 <= gameManager.count)
         {
 
             if (Input.GetMouseButtonUp(0))
@@ -62,7 +62,7 @@ public class EventTrigger : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(leftclick.gameObject);
 
-                Invoke("Enemy2", 0.3f);
+                Invoke(nameof(Enemy2), 0.3f);
 
                 enemy2.SetActive(true);
                 enemyblock2.SetActive(true);
@@ -77,12 +77,6 @@ public class EventTrigger : MonoBehaviour
                 }
             }
         }
-
-    void Enemy2()
-    {
-
-    }
-
 
     }
 }
