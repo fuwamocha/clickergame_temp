@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BlockManager : MonoBehaviour
-{
+public class BlockManager : MonoBehaviour {
+
+    [SerializeField] GameManager gameManager;
 
     public GameObject fillblock1;
     public GameObject fillblock2;
@@ -12,16 +11,11 @@ public class BlockManager : MonoBehaviour
     public GameObject fillblock5;
     public GameObject enemyblock;
 
-
-    [SerializeField] GameManager gameManager;
-
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         NewMethod();
 
-        if (!gameManager.enemy1)
-        {
+        if (!gameManager.enemy1) {
+
             Destroy(fillblock1.gameObject);
             Destroy(fillblock2.gameObject);
             Destroy(fillblock3.gameObject);
@@ -32,28 +26,22 @@ public class BlockManager : MonoBehaviour
         }
     }
 
-    private void NewMethod()
-    {
-        if (gameManager.count - 1 >= 0)
-        {
+    private void NewMethod() {
+
+        if (gameManager.count - 1 >= 0) {
             fillblock1.SetActive(true);
         }
-        if (gameManager.count - 2 >= 0)
-        {
+        if (gameManager.count - 2 >= 0) {
             fillblock2.SetActive(true);
         }
-        if (gameManager.count - 3 >= 0)
-        {
+        if (gameManager.count - 3 >= 0) {
             fillblock3.SetActive(true);
         }
-        if (gameManager.count - 4 >= 0)
-        {
+        if (gameManager.count - 4 >= 0) {
             fillblock4.SetActive(true);
         }
-        if (gameManager.count - 5 >= 0)
-        {
+        if (gameManager.count - 5 >= 0) {
             fillblock5.SetActive(true);
-
         }
     }
 }

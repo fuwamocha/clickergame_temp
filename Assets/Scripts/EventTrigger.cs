@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EventTrigger : MonoBehaviour
-{
-    bool isDead;
+public class EventTrigger : MonoBehaviour {
+
     [SerializeField] GameManager gameManager;
+    
+    bool isDead;
 
     public GameObject rightclick;
     public GameObject leftclick;
@@ -20,40 +19,31 @@ public class EventTrigger : MonoBehaviour
     [SerializeField] AudioClip deathSE;
     AudioSource audioSource;
 
-    void Start()
-    {
+    void Start() {
+
         audioSource = GetComponent<AudioSource>();
         isDead = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
-
-        if (isDead)
-        {
+        if (isDead) {
             Debug.Log(isDead);
 
             audioSource.PlayOneShot(deathSE);
-
         }
-        if (Enemy1.hp1 <= gameManager.count)
-        {
+        if (Enemy1.hp1 <= gameManager.count) {
             rightclick.SetActive(false);
             leftclick.SetActive(true);
         }
 
     }
 
-    public void Event()
-    {
+    public void Event() {
+        
         //敵を倒せる状態で敵を左クリック
-        if (Enemy1.hp1 <= gameManager.count)
-        {
-
-            if (Input.GetMouseButtonUp(0))
-                {
+        if (Enemy1.hp1 <= gameManager.count) {
+            if (Input.GetMouseButtonUp(0)) {
                 isDead = true;
                 //爆破エフェクト
                 Instantiate(BreakEffect, this.transform.position, this.transform.rotation);
@@ -71,12 +61,10 @@ public class EventTrigger : MonoBehaviour
                 //残り敵数を1減らす
                 gameManager.enemy_count--;
 
-                if (gameManager.enemy_count <= 0)
-                {
+                if (gameManager.enemy_count <= 0) {
                     gameManager.GameClear();
                 }
             }
         }
-
     }
 }

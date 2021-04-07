@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Enemy2 : MonoBehaviour
-{
-    public static int hp2 = 10;
- 
+public class Enemy2 : MonoBehaviour {
+   
+    // 敵HP
+    public static int hp2 = 10; 
 }
