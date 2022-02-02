@@ -25,13 +25,6 @@ public class GameManager : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
     }
 
-    // フレーム動作
-    void Update() {
-
-        //マウス右クリックでcount増加
-        Click();
-    }
-
     // 敵の数が0になったときにクリアメッセージ表示
     public void GameClear() {
 
@@ -39,22 +32,6 @@ public class GameManager : MonoBehaviour {
         //audioSource.Stop();
         //audioSource.PlayOneShot(clearSE);
         Debug.Log("ゲームクリア！");
-    }
-
-
-    //右クリックで力が貯まる
-    public void Click() {
-        if (Input.GetMouseButton(1)) {
-            if(Input.GetMouseButtonDown(1)) {
-                player.transform.position = new Vector3(5, -0.5f);
-                count++;
-                audioSource.PlayOneShot(clickSE);
-                Debug.Log(count);
-            }
-            else {
-                player.transform.position = new Vector3(5, -1);
-            }
-        }
     }
 }
 
