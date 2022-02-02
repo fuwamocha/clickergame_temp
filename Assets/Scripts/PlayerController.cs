@@ -7,7 +7,6 @@ namespace ClickerGame {
   {
     private Rigidbody2D _rigidBody;
     private float _jumpForce = 100f;
-    private int _clickCount  = 0;
 
     private void Start()
     {
@@ -17,7 +16,7 @@ namespace ClickerGame {
     private void Update()
     {
       if (Input.GetMouseButtonDown(1)) {
-        AddClickCount();
+        OnClickRightMouseButton();
       } else {
         return;
       }
@@ -26,12 +25,12 @@ namespace ClickerGame {
   /// <summary>
   /// 右クリック時にクリック回数を増加させる
   /// </summary>
-    private void AddClickCount()
+    private void OnClickRightMouseButton()
     {
-        _clickCount++;
+        PlayerManager.clickCount++;
 
         #if UNITY_EDITOR
-        Debug.Log($"クリック回数:{_clickCount}");
+        Debug.Log($"クリック回数:{PlayerManager.clickCount}");
         #endif
 
         // 上にジャンプ
