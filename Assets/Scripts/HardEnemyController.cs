@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace ClickerGame
 {
-  public class NormalEnemy : MonoBehaviour, IDamageable
+  public class HardEnemyController : MonoBehaviour, IDamageable
   {
     [SerializeField] private EnemyManager _enemyManager = null;
     // 敵HP
-    private int _hp { get; set;} = 5;
+    private int _hp     { get; set;} = 5;
+    private int _shield { get; set;} = 5;
     
     private void Start()
     {
@@ -20,13 +22,29 @@ namespace ClickerGame
     
     public void AddDamage(int damage)
     {
-      _hp -= damage;
-      PlayerManager.clickCount = 0; // クリック回数リセット
+      if (_shield > 0) {
+        _shield -= damage;
+        PlayerManager.clickCount = 0; // クリック回数リセット
+      } else {
+        _hp -= damage;
+        PlayerManager.clickCount = 0; // クリック回数リセット
+      }
     }
 
     private void OnEnemyClickDelegate(PointerEventData data)
     {
       if (PlayerManager.clickCount <= 0 || Input.GetMouseButtonDown(1)) return;
+
+      if (_shield > 0) {
+
+        AddDamage(PlayerManager.clickCount);
+
+        #if UNITY_EDITOR
+        Debug.Log($"残りシールド:{_shield}");
+        #endif
+
+        return;
+      }
 
       if (PlayerManager.clickCount >= _hp) {
 
